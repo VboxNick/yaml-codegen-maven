@@ -5,7 +5,7 @@
 
     <groupId>com.github.vboxnick</groupId>
     <artifactId>yaml-codegen-maven</artifactId>
-    <version>0.0.3-SNAPSHOT</version>
+    <version>0.0.3</version>
 
     <name>YAML Code generator</name>
 
@@ -32,7 +32,7 @@
     <scm>
         <connection>scm:git:git@github.com:VboxNick/yaml-codegen-maven.git</connection>
         <developerConnection>scm:git:git@github.com:VboxNick/yaml-codegen-maven.git</developerConnection>
-      <tag>v0.0.2</tag>
+      <tag>v0.0.3</tag>
   </scm>
 
     <dependencies>
