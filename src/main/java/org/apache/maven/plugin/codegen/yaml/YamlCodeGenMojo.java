@@ -59,12 +59,12 @@ public class YamlCodeGenMojo extends AbstractMojo {
                 for (final ConfigModelOutput output : configModel.getOutputs()) {
                     getLog().debug("Preparing FreeMarker to render " + modelFile);
 
+                    final File templateFile = output.getTmpl();
+
                     final Configuration cfg = new Configuration(DEFAULT_FREEMARKER_VERSION);
                     cfg.setDefaultEncoding(DEFAULT_ENCODING.displayName());
                     cfg.setTemplateExceptionHandler(TemplateExceptionHandler.RETHROW_HANDLER);
                     cfg.setLogTemplateExceptions(false);
-
-                    final File templateFile = output.getTmpl();
                     cfg.setTemplateLoader(new FileTemplateLoader(templateFile.getParentFile()));
 
                     final Template template = cfg.getTemplate(templateFile.getName());
