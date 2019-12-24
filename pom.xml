@@ -200,6 +200,7 @@
                     </execution>
                 </executions>
                 <configuration>
+                    <skip>${env.CI}</skip>
                     <passphraseServerId>ossrh</passphraseServerId>
                 </configuration>
             </plugin>

@@ -2,7 +2,6 @@ sudo: false
 language: java
 jdk:
   - openjdk8
-script: ./mvnw -Dgpg.skip=true clean verify
 cache:
   directories:
     - $HOME/.m2
