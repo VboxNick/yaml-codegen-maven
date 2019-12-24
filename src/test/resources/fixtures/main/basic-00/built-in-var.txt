@@ -1,0 +1,10 @@
+-- Accessing model
+message = Hello world.
+
+-- Built-in variables
+modelFileName = model.yml
+outputFileName = built-in-var.txt
+outputFilePath = target/generated-sources/java/com/example/basic-00/built-in-var.txt
+
+-- Test outputFilePathTraversal
+outputFileParentName = basic-00

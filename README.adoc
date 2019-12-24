@@ -1,0 +1,40 @@
+==== Built-in variables
+
+|===
+|Variable |Type
+
+|`model`
+|`Map<String, Object>`
+
+
+|`model.file`
+|`java.io.File`
+
+|`model.content`
+|`Map<String, Object>`
+
+
+|`output`
+|`Map<String, Object>`
+
+|`output.file`
+|`java.io.File`
+
+|`tmplVars`
+|`Map<String, Object>`
+
+|===
+
+
+==== Build
+[source,shell script]
+----
+./mvnw clean verify
+----
+
+==== Release
+
+[source,shell script]
+----
+./mvnw clean release:prepare release:perform
+----

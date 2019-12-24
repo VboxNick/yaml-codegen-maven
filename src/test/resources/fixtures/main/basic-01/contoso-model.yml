@@ -1,0 +1,6 @@
+name: Contoso
+employees:
+  - name: Bob
+    title: CTO
+  - name: Alice
+    title: CEO
