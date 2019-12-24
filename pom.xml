@@ -199,6 +199,9 @@
                         </goals>
                     </execution>
                 </executions>
+                <configuration>
+                    <passphraseServerId>ossrh</passphraseServerId>
+                </configuration>
             </plugin>
             <plugin>
                 <groupId>org.sonatype.plugins</groupId>
