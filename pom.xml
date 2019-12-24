@@ -5,7 +5,7 @@
 
     <groupId>com.github.vboxnick</groupId>
     <artifactId>yaml-codegen-maven</artifactId>
-    <version>0.0.2</version>
+    <version>0.0.3-SNAPSHOT</version>
 
     <name>YAML Code generator</name>
 
