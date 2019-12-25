@@ -2,7 +2,7 @@ image:https://travis-ci.com/VboxNick/yaml-codegen-maven.svg?branch=master["Build
 
 ==== Basic usage
 
-.Plugin configuration pom.xml
+.Plugin configuration in pom.xml
 [source,xml]
 ----
 <build>
@@ -41,7 +41,7 @@ image:https://travis-ci.com/VboxNick/yaml-codegen-maven.svg?branch=master["Build
 </build>
 ----
 
-.Model definition company.yml
+.Model definition: company.yml
 [source,yaml]
 ----
 fields:
@@ -52,7 +52,7 @@ fields:
     type: string
 ----
 
-.Template java-pojo.ftl
+.Template: java-pojo.ftl
 [source,injectedfreemarker]
 ----
 <#assign pojoClassName = output.file.name?keep_before(".")>
@@ -79,7 +79,7 @@ public final class ${pojoClassName} {
 }
 ----
 
-.output Company.java
+.Output: Company.java
 [source, java]
 ----
 
