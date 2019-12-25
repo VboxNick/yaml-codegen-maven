@@ -1,0 +1,6 @@
+fields:
+  - name: id
+    type: long
+
+  - name: shortName
+    type: string

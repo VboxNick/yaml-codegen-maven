@@ -1,5 +1,64 @@
 image:https://travis-ci.com/VboxNick/yaml-codegen-maven.svg?branch=master["Build Status", link="https://travis-ci.com/VboxNick/yaml-codegen-maven"]
 
+==== Basic usage
+
+.Plugin configuration pom.xml
+[source,xml]
+----
+<build>
+   <plugins>
+       <plugin>
+           <groupId>com.github.vboxnick</groupId>
+           <artifactId>yaml-codegen-maven</artifactId>
+           <version><!-- current version --></version>
+           <configuration>
+              <models>
+                 <model>
+                    <file>${project.basedir}/src/resources/schema/company.yml</file>
+                    <outputs>
+                       <output>
+                          <tmpl>${project.basedir}/src/resources/templates/java-pojo.ftl</tmpl>
+                          <dst>${project.basedir}/target/generated-sources/java/com/example/Company.java</dst>
+                       </output>
+                       <output>
+                           <tmpl>${project.basedir}/src/resources/templates/ts-pojo.ftl</tmpl>
+                           <dst>${project.basedir}/target/generated-sources/ts/company.ts</dst>
+                       </output>
+                    </outputs>
+                 </model>
+              </models>
+           </configuration>
+           <executions>
+              <execution>
+                 <goals>
+                    <goal>generate</goal>
+                 </goals>
+                <phase>generate-sources</phase>
+              </execution>
+           </executions>
+       </plugin>
+   </plugins>
+</build>
+----
+
+.Model definition company.yml
+[source,yaml]
+----
+include::src/test/resources/fixtures/main/basic-usage/company.yml[]
+----
+
+.Template java-pojo.ftl
+[source,text]
+----
+include::src/test/resources/fixtures/main/basic-usage/java-pojo.ftl[]
+----
+
+.output Company.java
+[source, java]
+----
+include::src/test/resources/fixtures/main/basic-usage/Company.java[]
+----
+
 ==== Built-in variables
 
 |===
@@ -26,17 +85,3 @@ image:https://travis-ci.com/VboxNick/yaml-codegen-maven.svg?branch=master["Build
 |`Map<String, Object>`
 
 |===
-
-
-==== Build
-[source,shell script]
-----
-./mvnw clean verify
-----
-
-==== Release
-
-[source,shell script]
-----
-./mvnw clean release:prepare release:perform
-----
