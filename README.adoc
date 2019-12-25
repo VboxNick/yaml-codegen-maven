@@ -126,7 +126,10 @@ public final class Company {
 |`output.file`
 |`java.io.File`
 
-|`tmplVars`
+|`tmpl.file`
+|`java.io.File`
+
+|`tmpl.vars`
 |`Map<String, Object>`
 
 |===

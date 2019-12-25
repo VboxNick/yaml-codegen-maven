@@ -3,6 +3,7 @@ message = Hello world.
 
 -- Built-in variables
 modelFileName = model.yml
+templateFileName = built-in-var.ftl
 outputFileName = built-in-var.txt
 outputFilePath = target/generated-sources/java/com/example/basic-00/built-in-var.txt
 

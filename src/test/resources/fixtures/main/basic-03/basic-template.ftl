@@ -5,4 +5,4 @@ Welcome to ${model.content.name}!
     ${employee.title}
 </#list>
 --
-customVarKey=${tmplVars.customVarKey}
+customVarKey=${tmpl.vars.customVarKey}
