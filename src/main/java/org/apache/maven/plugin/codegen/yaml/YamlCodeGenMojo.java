@@ -85,7 +85,10 @@ public class YamlCodeGenMojo extends AbstractMojo {
                                         "file", new File(outputDst.getPath())
                                 )
                         );
-                        root.put("tmplVars", ObjectUtils.defaultIfNull(output.getTmplVars(), emptyMap()));
+                        root.put("tmpl", ImmutableMap.of(
+                                "file", templateFile,
+                                "vars", ObjectUtils.defaultIfNull(output.getTmplVars(), emptyMap())
+                        ));
 
                         template.process(root, writer);
                         writer.flush();

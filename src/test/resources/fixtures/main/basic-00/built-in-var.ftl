@@ -3,6 +3,7 @@ message = ${model.content.message}
 
 -- Built-in variables
 modelFileName = ${model.file.name}
+templateFileName = ${tmpl.file.name}
 outputFileName = ${output.file.name}
 outputFilePath = ${output.file.path}
 
