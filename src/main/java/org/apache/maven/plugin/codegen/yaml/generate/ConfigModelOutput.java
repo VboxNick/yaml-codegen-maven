@@ -1,4 +1,4 @@
-package org.apache.maven.plugin.codegen.yaml.binding;
+package org.apache.maven.plugin.codegen.yaml.generate;
 
 import lombok.Data;
 

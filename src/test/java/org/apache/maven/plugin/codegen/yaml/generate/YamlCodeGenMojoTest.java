@@ -1,9 +1,7 @@
-package org.apache.maven.plugin.codegen.yaml;
+package org.apache.maven.plugin.codegen.yaml.generate;
 
-import org.apache.maven.plugin.Mojo;
+import org.apache.maven.plugin.codegen.yaml.generate.YamlCodeGenMojo;
 import org.apache.maven.plugin.testing.AbstractMojoTestCase;
-import org.assertj.core.api.Assertions;
-import org.assertj.core.api.Assumptions;
 
 import java.io.File;
 

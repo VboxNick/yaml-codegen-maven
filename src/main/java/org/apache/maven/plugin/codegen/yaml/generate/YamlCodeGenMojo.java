@@ -1,4 +1,4 @@
-package org.apache.maven.plugin.codegen.yaml;
+package org.apache.maven.plugin.codegen.yaml.generate;
 
 
 import com.google.common.collect.ImmutableMap;
@@ -12,8 +12,6 @@ import org.apache.commons.lang3.ObjectUtils;
 import org.apache.commons.lang3.time.StopWatch;
 import org.apache.maven.plugin.AbstractMojo;
 import org.apache.maven.plugin.MojoExecutionException;
-import org.apache.maven.plugin.codegen.yaml.binding.ConfigModel;
-import org.apache.maven.plugin.codegen.yaml.binding.ConfigModelOutput;
 import org.apache.maven.plugins.annotations.Mojo;
 import org.apache.maven.plugins.annotations.Parameter;
 import org.yaml.snakeyaml.Yaml;
