@@ -2,11 +2,9 @@ clean:
 	./mvnw clean
 
 install:
-	export GPG_TTY=$$(tty)
-	./mvnw clean install -Dgpg.executable=$$(which gpg)
+	./mvnw clean install
 
 release:
-	export GPG_TTY=$$(tty)
-	./mvnw --batch-mode clean release:prepare release:perform -Dgpg.executable=$$(which gpg)
+	./mvnw --batch-mode clean release:prepare release:perform
 
 .PHONY: clean install
