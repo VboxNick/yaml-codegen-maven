@@ -19,7 +19,7 @@
         <!-- Dependency version -->
         <version.maven-plugin-api>3.6.0</version.maven-plugin-api>
         <version.freemarker>2.3.29</version.freemarker>
-        <version.snakeyaml>1.25</version.snakeyaml>
+        <version.snakeyaml>1.29</version.snakeyaml>
     </properties>
 
     <licenses>
