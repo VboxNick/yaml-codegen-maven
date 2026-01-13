@@ -1,67 +1,60 @@
 package org.apache.maven.plugin.codegen.yaml;
 
+import org.apache.maven.api.plugin.testing.InjectMojo;
+import org.apache.maven.api.plugin.testing.MojoTest;
 import org.apache.maven.plugin.Mojo;
-import org.apache.maven.plugin.testing.AbstractMojoTestCase;
-import org.assertj.core.api.Assertions;
-import org.assertj.core.api.Assumptions;
+import org.junit.jupiter.api.Test;
 
-import java.io.File;
-
-import static org.assertj.core.api.Assertions.*;
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assumptions.*;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.assertj.core.api.Assumptions.assumeThatCode;
+import static org.codehaus.plexus.testing.PlexusExtension.getTestFile;
 
-public class YamlCodeGenMojoTest extends AbstractMojoTestCase {
+@MojoTest
+public class YamlCodeGenMojoTest {
 
-    public void testBasicUsageScenario() {
-        final File pom = getTestFile("src/test/resources/fixtures/main/basic-usage/pom.xml");
-
-        assumeThatCode(() -> lookupMojo(YamlCodeGenMojo.DEFAULT_GOAL, pom).execute())
-                .doesNotThrowAnyException();
+    @Test
+    @InjectMojo(goal = YamlCodeGenMojo.DEFAULT_GOAL, pom = "src/test/resources/fixtures/main/basic-usage/pom.xml")
+    void testBasicUsageScenario(Mojo mojo) {
+        assumeThatCode(mojo::execute).doesNotThrowAnyException();
 
         assertThat(getTestFile("target/generated-sources/java/com/example/basic-usage/Company.java"))
-                .hasSameContentAs(getTestFile("src/test/resources/fixtures/main/basic-usage/Company.java"));
+                .hasSameTextualContentAs(getTestFile("src/test/resources/fixtures/main/basic-usage/Company.java"));
     }
 
-    public void testRenderTemplateWithBuiltInVars() {
-        final File pom = getTestFile("src/test/resources/fixtures/main/basic-00/pom.xml");
-
-        assumeThatCode(() -> lookupMojo(YamlCodeGenMojo.DEFAULT_GOAL, pom).execute())
-                .doesNotThrowAnyException();
+    @Test
+    @InjectMojo(goal = YamlCodeGenMojo.DEFAULT_GOAL, pom = "src/test/resources/fixtures/main/basic-00/pom.xml")
+    void testRenderTemplateWithBuiltInVars(Mojo mojo) {
+        assumeThatCode(mojo::execute).doesNotThrowAnyException();
 
         assertThat(getTestFile("target/generated-sources/java/com/example/basic-00/built-in-var.txt"))
-                .hasSameContentAs(getTestFile("src/test/resources/fixtures/main/basic-00/built-in-var.txt"));
-
+                .hasSameTextualContentAs(getTestFile("src/test/resources/fixtures/main/basic-00/built-in-var.txt"));
     }
 
-    public void testRenderTemplateWithBasicSettings() {
-        final File pom = getTestFile("src/test/resources/fixtures/main/basic-01/pom.xml");
-
-        assumeThatCode(() -> lookupMojo(YamlCodeGenMojo.DEFAULT_GOAL, pom).execute())
-                .doesNotThrowAnyException();
+    @Test
+    @InjectMojo(goal = YamlCodeGenMojo.DEFAULT_GOAL, pom = "src/test/resources/fixtures/main/basic-01/pom.xml")
+    void testRenderTemplateWithBasicSettings(Mojo mojo) {
+        assumeThatCode(mojo::execute).doesNotThrowAnyException();
 
         assertThat(getTestFile("target/generated-sources/java/com/example/one/pojo1.txt"))
-                .hasSameContentAs(getTestFile("src/test/resources/fixtures/main/basic-01/pojo1.txt"));
-
+                .hasSameTextualContentAs(getTestFile("src/test/resources/fixtures/main/basic-01/pojo1.txt"));
         assertThat(getTestFile("target/generated-sources/java/com/example/two/pojo2.txt"))
-                .hasSameContentAs(getTestFile("src/test/resources/fixtures/main/basic-01/pojo2.txt"));
+                .hasSameTextualContentAs(getTestFile("src/test/resources/fixtures/main/basic-01/pojo2.txt"));
     }
 
-    public void testThrowWhenNoModelsConfiguredToRender() {
-        final File pom = getTestFile("src/test/resources/fixtures/main/basic-02/pom.xml");
-
-        assertThatThrownBy(() -> lookupMojo(YamlCodeGenMojo.DEFAULT_GOAL, pom).execute())
-                .hasMessage("No models configured. Please, either add one or remove plugin declaration.");
+    @Test
+    @InjectMojo(goal = YamlCodeGenMojo.DEFAULT_GOAL, pom = "src/test/resources/fixtures/main/basic-02/pom.xml")
+    void testThrowWhenNoModelsConfiguredToRender(Mojo mojo) {
+        assertThatThrownBy(mojo::execute).hasMessage("No models configured. Please either add a model configuration or remove plugin declaration.");
     }
 
-    public void testModelPathIsAvailableInFreeMarkerTemplate() {
-        final File pom = getTestFile("src/test/resources/fixtures/main/basic-03/pom.xml");
-
-        assumeThatCode(() -> lookupMojo(YamlCodeGenMojo.DEFAULT_GOAL, pom).execute())
-                .doesNotThrowAnyException();
-
+    @Test
+    @InjectMojo(goal = YamlCodeGenMojo.DEFAULT_GOAL, pom = "src/test/resources/fixtures/main/basic-03/pom.xml")
+    void testModelPathIsAvailableInFreeMarkerTemplate(Mojo mojo) {
+        assumeThatCode(mojo::execute).doesNotThrowAnyException();
 
         assertThat(getTestFile("target/generated-sources/java/com/example/three/pojo3.txt"))
-                .hasSameContentAs(getTestFile("src/test/resources/fixtures/main/basic-03/pojo.txt"));
+                .hasSameTextualContentAs(getTestFile("src/test/resources/fixtures/main/basic-03/pojo.txt"));
     }
+
 }
