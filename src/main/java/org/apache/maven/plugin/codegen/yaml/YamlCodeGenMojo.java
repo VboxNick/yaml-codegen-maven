@@ -1,6 +1,5 @@
 package org.apache.maven.plugin.codegen.yaml;
 
-import com.google.common.collect.ImmutableMap;
 import freemarker.cache.FileTemplateLoader;
 import freemarker.template.Configuration;
 import freemarker.template.Template;
@@ -42,6 +41,9 @@ public class YamlCodeGenMojo extends AbstractMojo {
     @Parameter(name = "models", required = true)
     private List<ConfigModel> models = new ArrayList<>();
 
+    @Parameter(defaultValue = "${basedir}", readonly = true)
+    private File basedir;
+
     public void execute() throws MojoExecutionException {
         final StopWatch started = StopWatch.createStarted();
         getLog().info("Found " + models.size() + " configured model(s).");
@@ -63,7 +65,7 @@ public class YamlCodeGenMojo extends AbstractMojo {
 
                     final File outputDst = output.getDst();
                     try (final Writer writer = prepareDestinationForWrite(outputDst)) {
-                        final Map<String, Object> dataModel = createModel(output, modelContent, modelFile, outputDst, templateFile);
+                        final Map<String, Object> dataModel = createModel(output, modelContent, modelFile, outputDst, templateFile, basedir);
                         template.process(dataModel, writer);
                         writer.flush();
                         getLog().info("Processed  " + modelFile + " to " + outputDst);
@@ -108,21 +110,24 @@ public class YamlCodeGenMojo extends AbstractMojo {
     }
 
     private static Map<String, Object> createModel(ConfigModelOutput output, Map<String, Object> modelContent,
-                                                   File modelFile, File outputDst, File templateFile) {
+                                                   File modelFile, File outputDst, File templateFile, File basedir) {
         final Map<String, Object> root = new HashMap<>();
 
         root.put("model",
-                ImmutableMap.of(
+                Map.of(
                         "content", modelContent,
                         "file", modelFile
                 )
         );
+
+        final File relativeOutputDst = basedir != null
+                ? new File(basedir.toPath().relativize(outputDst.toPath()).toString())
+                : outputDst;
+
         root.put("output",
-                ImmutableMap.of(
-                        "file", new File(outputDst.getPath())
-                )
+                Map.of("file", relativeOutputDst)
         );
-        root.put("tmpl", ImmutableMap.of(
+        root.put("tmpl", Map.of(
                 "file", templateFile,
                 "vars", ObjectUtils.getIfNull(output.getTmplVars(), emptyMap())
         ));

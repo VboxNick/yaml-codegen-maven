@@ -20,7 +20,6 @@
 
         <!-- Dependency versions -->
         <assertj-core.version>3.27.6</assertj-core.version>
-        <commons-io.version>2.21.0</commons-io.version>
         <commons-lang3.version>3.20.0</commons-lang3.version>
         <freemarker.version>2.3.34</freemarker.version>
         <junit.version>6.0.2</junit.version>
@@ -57,6 +56,13 @@
         </developer>
     </developers>
 
+    <contributors>
+        <contributor>
+            <name>Marc Walter</name>
+            <email>marc.walter.ch@gmail.com</email>
+        </contributor>
+    </contributors>
+
     <scm>
         <url>git@github.com:vboxnick/yaml-codegen-maven.git</url>
         <connection>scm:git:git@github.com:vboxnick/yaml-codegen-maven.git</connection>
@@ -92,12 +98,7 @@
             <groupId>ch.qos.logback</groupId>
             <artifactId>logback-classic</artifactId>
             <version>${logback-classic.version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>commons-io</groupId>
-            <artifactId>commons-io</artifactId>
-            <version>${commons-io.version}</version>
+            <scope>test</scope>
         </dependency>
 
         <dependency>
