@@ -1,0 +1,43 @@
+=== Release
+=== Set mandatory environment variables.
+Singing and release and goals require the following environment variables:
+
+. `PUBLISHING_SERVER_ID = central-sonatype-com` — the respected server id entry in the `settings.xml` that holds the credentials for publishing.
+
+. `PASSPHRASE_SERVER_ID` — the respected server id entry in the `settings.xml` that holds the GPG passphrase for signing of the artifacts.
+
+The `settings.xml` looks as follows:
+
+[source,xml]
+----
+...
+<server>
+    <id>central-sonatype-com</id>
+    <username>change-me</username>
+    <password>change-me</password>
+</server>
+...
+<profile>
+    <id>central-sonatype-com</id>
+    <activation>
+        <activeByDefault>false</activeByDefault>
+    </activation>
+    <properties>
+        <gpg.executable>gpg2</gpg.executable>
+        <gpg.passphrase>change-me</gpg.passphrase>
+    </properties>
+</profile>
+...
+----
+Set up the environment variables by running this snippet with the corresponding values.
+[source,bash]
+----
+$ export PUBLISHING_SERVER_ID=central-sonatype-com
+$ export PASSPHRASE_SERVER_ID=central-sonatype-com
+----
+
+=== Execute release goals
+[source,bash]
+----
+$ ./mvnw --batch-mode -Pcentral-sonatype-com clean release:prepare release:perform
+----

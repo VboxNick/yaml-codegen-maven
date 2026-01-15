@@ -233,7 +233,6 @@
                     </execution>
                 </executions>
                 <configuration>
-                    <skip>${env.SKIP_PUBLISH_TO_CENTRAL}</skip>
                     <passphraseServerId>${env.PASSPHRASE_SERVER_ID}</passphraseServerId>
                 </configuration>
             </plugin>
@@ -244,7 +243,7 @@
                 <extensions>true</extensions>
                 <configuration>
                     <publishingServerId>${env.PUBLISHING_SERVER_ID}</publishingServerId>
-                    <skipPublishing>${env.SKIP_PUBLISH_TO_CENTRAL}</skipPublishing>
+                    <skipPublishing>false</skipPublishing>
                     <waitUntil>published</waitUntil>
                 </configuration>
             </plugin>
