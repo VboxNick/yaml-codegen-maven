@@ -40,4 +40,5 @@ $ export PASSPHRASE_SERVER_ID=central-sonatype-com
 [source,bash]
 ----
 $ ./mvnw --batch-mode -Pcentral-sonatype-com clean release:prepare release:perform
+$ git push --tags
 ----
