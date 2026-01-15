@@ -2,9 +2,6 @@ clean:
 	./mvnw clean
 
 install:
-	./mvnw clean install
-
-release:
-	./mvnw --batch-mode clean release:prepare release:perform
+	SKIP_PUBLISH_TO_CENTRAL=true ./mvnw clean install
 
 .PHONY: clean install

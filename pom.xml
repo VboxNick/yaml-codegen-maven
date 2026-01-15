@@ -220,7 +220,6 @@
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>${maven-surefire-plugin.version}</version>
             </plugin>
-
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-gpg-plugin</artifactId>
@@ -235,19 +234,19 @@
                     </execution>
                 </executions>
                 <configuration>
-                    <skip>${env.CI}</skip>
-                    <passphraseServerId>ossrh</passphraseServerId>
+                    <skip>${env.SKIP_PUBLISH_TO_CENTRAL}</skip>
+                    <passphraseServerId>${env.PASSPHRASE_SERVER_ID}</passphraseServerId>
                 </configuration>
             </plugin>
             <plugin>
-                <groupId>org.sonatype.plugins</groupId>
-                <artifactId>nexus-staging-maven-plugin</artifactId>
-                <version>${nexus-staging-maven-plugin.version}</version>
+                <groupId>org.sonatype.central</groupId>
+                <artifactId>central-publishing-maven-plugin</artifactId>
+                <version>0.9.0</version>
                 <extensions>true</extensions>
                 <configuration>
-                    <serverId>ossrh</serverId>
-                    <nexusUrl>https://oss.sonatype.org/</nexusUrl>
-                    <autoReleaseAfterClose>true</autoReleaseAfterClose>
+                    <publishingServerId>${env.PUBLISHING_SERVER_ID}</publishingServerId>
+                    <skipPublishing>${env.SKIP_PUBLISH_TO_CENTRAL}</skipPublishing>
+                    <waitUntil>published</waitUntil>
                 </configuration>
             </plugin>
             <plugin>
